@@ -26,7 +26,6 @@ Things you may want to cover:
 | birthday   | date   | null: false |
 
 - has_many :products
-- has_many :comments
 - has_many :payments
 
 # Products テーブル
@@ -44,18 +43,7 @@ Things you may want to cover:
 | user            | reference      | null: false |
 
 -belongs_to :user
--has_many :comments
 -has_one :payment
-
-# Comments テーブル
-| Column     | Type      | Options     |
-| ---------- | ------    | ----------- |
-| text       | text      | null: false |
-| user       | reference | null: false |
-| product    | reference | null: false |
-
--belongs_to :user
--belongs_to :product
 
 # Payments テーブル
 | Column        | Type      | Options     |
