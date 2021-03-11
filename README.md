@@ -14,16 +14,16 @@ Things you may want to cover:
 * Database creation
 
 # users テーブル
-| Column             | Type   | Options                        |
-| ------------------ | ------ | ------------------------------ |
-| email              | string | null: false, foreign_key: true |
-| encrypted_password | string | null: false                    |
-| nickname           | string | null: false                    |
-| first_name         | string | null: false                    |
-| last_name          | string | null: false                    |
-| first_kana         | string | null: false                    |
-| last_kana          | string | null: false                    |
-| birthday           | date   | null: false                    |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| nickname           | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_kana         | string | null: false               |
+| last_kana          | string | null: false               |
+| birthday           | date   | null: false               |
 
 - has_many :products
 - has_many :payments
@@ -55,7 +55,7 @@ Things you may want to cover:
 - belongs_to :product
 - has_one :address
 
-# Address テーブル
+# Addresses テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | post_number   | string     | null: false                    |
@@ -66,7 +66,7 @@ Things you may want to cover:
 | phone_number  | string     | null: false                    |
 | payment       | references | null: false, foreign_key: true |
 
-- belongs_to :user
+
 - belongs_to :payment
 
 
