@@ -29,7 +29,7 @@ Things you may want to cover:
 - has_many :payments
 
 
-# Products テーブル
+# products テーブル
 | Column             | Type            | Options           |
 | ------------------ | --------------- | ----------------- |
 | name               | string          | null: false       |
@@ -45,7 +45,7 @@ Things you may want to cover:
 - belongs_to :user
 - has_one :payment
 
-# Payments テーブル
+# payments テーブル
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
 | product       | references | foreign_key: true |
@@ -55,7 +55,7 @@ Things you may want to cover:
 - belongs_to :product
 - has_one :address
 
-# Addresses テーブル
+# addresses テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | post_number   | string     | null: false                    |
