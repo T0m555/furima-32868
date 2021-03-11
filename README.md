@@ -30,26 +30,26 @@ Things you may want to cover:
 
 
 # Products テーブル
-| Column             | Type            | Options     |
-| ------------------ | --------------- | ----------- |
-| name               | string          | null: false |
-| description        | text            | null: false |
-| category_id        | integer         | null: false |
-| condition_id       | integer         | null: false |
-| shipping_charge_id | integer         | null: false |
-| prefecture_id      | integer         | null: false |
-| days_to_ship_id    | integer         | null: false |
-| price              | integer         | null: false |
-| user               | references      | null: true, foreign_key: true |
+| Column             | Type            | Options           |
+| ------------------ | --------------- | ----------------- |
+| name               | string          | null: false       |
+| description        | text            | null: false       |
+| category_id        | integer         | null: false       |
+| condition_id       | integer         | null: false       |
+| shipping_charge_id | integer         | null: false       |
+| prefecture_id      | integer         | null: false       |
+| days_to_ship_id    | integer         | null: false       |
+| price              | integer         | null: false       |
+| user               | references      | foreign_key: true |
 
 - belongs_to :user
 - has_one :payment
 
 # Payments テーブル
-| Column        | Type       | Options    |
-| ------------- | ---------- | ---------- |
-| product       | references | null: true, foreign_key: true |
-| user          | references | null: true, foreign_key: true |
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| product       | references | foreign_key: true |
+| user          | references | foreign_key: true |
 
 - belongs_to :user
 - belongs_to :product
