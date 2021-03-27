@@ -25,20 +25,20 @@ Things you may want to cover:
 | last_kana          | string | null: false               |
 | birthday           | date   | null: false               |
 
-- has_many :products
+- has_many :items
 - has_many :payments
 
 
-# products テーブル
+# items テーブル
 | Column             | Type            | Options           |
 | ------------------ | --------------- | ----------------- |
 | name               | string          | null: false       |
 | description        | text            | null: false       |
 | category_id        | integer         | null: false       |
 | condition_id       | integer         | null: false       |
-| shipping_charge_id | integer         | null: false       |
+| shippingCharge_id | integer         | null: false       |
 | prefecture_id      | integer         | null: false       |
-| days_to_ship_id    | integer         | null: false       |
+| daysToShip_id    | integer         | null: false       |
 | price              | integer         | null: false       |
 | user               | references      | foreign_key: true |
 
@@ -48,11 +48,11 @@ Things you may want to cover:
 # payments テーブル
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
-| product       | references | foreign_key: true |
+| item          | references | foreign_key: true |
 | user          | references | foreign_key: true |
 
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 - has_one :address
 
 # addresses テーブル
