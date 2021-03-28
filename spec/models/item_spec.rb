@@ -33,9 +33,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
       it '送料条件idが1では登録できない' do
-        @item.shippingCharge_id = 1
+        @item.shipping_charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shippingcharge must be other than 1")
+        expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
       end
       it '発送地域idが1では登録できない' do
         @item.prefecture_id = 1
@@ -43,9 +43,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it '発送日idが1では登録できない' do
-        @item.daysToShip_id = 1
+        @item.days_to_ship_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Daystoship must be other than 1")
+        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end
       it '価格が入力されていないと登録できない' do
         @item.price = ""

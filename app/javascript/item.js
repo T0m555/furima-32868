@@ -1,10 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   console.log(document.getElementById('hello'));
-// });
-
-function post (){
-  console.log("非同期投稿を実装");
-}
 
 function chargeCalc (){
   const priceText = document.getElementById("item-price");
