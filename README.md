@@ -25,11 +25,11 @@ Things you may want to cover:
 | last_kana          | string | null: false               |
 | birthday           | date   | null: false               |
 
-- has_many :products
+- has_many :items
 - has_many :payments
 
 
-# products テーブル
+# items テーブル
 | Column             | Type            | Options           |
 | ------------------ | --------------- | ----------------- |
 | name               | string          | null: false       |
@@ -48,11 +48,11 @@ Things you may want to cover:
 # payments テーブル
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
-| product       | references | foreign_key: true |
+| item          | references | foreign_key: true |
 | user          | references | foreign_key: true |
 
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 - has_one :address
 
 # addresses テーブル
