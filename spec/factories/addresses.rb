@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :address do
-    post_number   {'123-1234'}
-    prefecture_id {3}
-    municipality  {'◯×市'}
-    address       {'どこか'}
-    building_name {''}
-    phone_number  {'000-0000-0000'}
+    post_number   {Faker::Number.number(digits: 3).to_s + "-" + Faker::Number.number(digits: 4).to_s}
+    prefecture_id { Faker::Number.between(from: 2, to: 48) }
+    municipality  {Faker::Address.city}
+    address       {Faker::Address.street_address}
+    building_name {Faker::Beer.hop}
+    phone_number  {Faker::Number.number(digits: 11)}
   end
 end
