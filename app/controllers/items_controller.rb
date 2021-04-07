@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :ensure_user, only: %i[update edit destroy]
   before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_payment
 
   def index
     @items = Item.order(id: :DESC)
@@ -53,4 +54,9 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def set_payment
+    @payments = Payment.all
+  end
+
 end
