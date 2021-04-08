@@ -3,6 +3,13 @@ class ItemsController < ApplicationController
   before_action :ensure_user, only: %i[update edit destroy]
   before_action :set_item, only: %i[show edit update destroy]
   before_action :set_payment
+  before_action :item_check, only: %i[create]
+
+  before_action :shippingCharges_set, only: %i[index show new edit]
+  before_action :categories_set, only: %i[show new edit]
+  before_action :conditions_set, only: %i[show new edit]
+  before_action :prefectures_set, only: %i[show new edit]
+  before_action :days_to_ships_set, only: %i[show new edit]
 
   def index
     @items = Item.order(id: :DESC)
@@ -57,6 +64,33 @@ class ItemsController < ApplicationController
 
   def set_payment
     @payments = Payment.all
+  end
+
+  def item_check
+    @payments = Payment.all
+    @payment = @payments.find_by(item_id: params[:item_id])
+    redirect_to root_path unless @payment.nil?
+  end
+
+
+  def shippingCharges_set
+    @shippingCharges = ShippingCharge.all
+  end
+
+  def categories_set
+    @categories = Category.all
+  end
+
+  def conditions_set
+    @conditions = Condition.all
+  end
+
+  def prefectures_set
+    @prefectures = Prefecture.all
+  end
+
+  def days_to_ships_set
+    @days_to_ships = DaysToShip.all
   end
 
 end

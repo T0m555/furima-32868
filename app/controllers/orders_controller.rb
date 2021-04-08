@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   before_action :ensure_user
   before_action :item_check
 
+  before_action :shippingCharges_set, only: :index
+  before_action :prefectures_set, only: :index
+
   def index
     item_set
     @address = Address.new()
@@ -56,6 +59,14 @@ class OrdersController < ApplicationController
     @payments = Payment.all
     @payment = @payments.find_by(item_id: params[:item_id])
     redirect_to root_path unless @payment.nil?
+  end
+
+  def shippingCharges_set
+    @shippingCharges = ShippingCharge.all
+  end
+
+  def prefectures_set
+    @prefectures = Prefecture.all
   end
 
 end

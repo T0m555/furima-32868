@@ -21,7 +21,7 @@
       <%= "¥ #{@item.price.to_s(:delimited)}" %>
       </span>
       <span class="item-postage">
-        <%= ShippingCharge.data[@item.shipping_charge_id - 1][:name] %>
+        <%= @shippingCharges.find_by(id: @item.shipping_charge_id).name %>
       </span>
     </div>
 
@@ -48,23 +48,23 @@
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= Category.data[@item.category_id - 1][:name] %></td>
+          <td class="detail-value"><%= @categories.find_by(id: @item.category_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= Condition.data[@item.condition_id - 1][:name] %></td>
+          <td class="detail-value"><%= @conditions.find_by(id: @item.condition_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= ShippingCharge.data[@item.shipping_charge_id - 1][:name] %></td>
+          <td class="detail-value"><%= @shippingCharges.find_by(id: @item.shipping_charge_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= Prefecture.data[@item.prefecture_id - 1][:name] %></td>
+          <td class="detail-value"><%= @prefectures.find_by(id: @item.prefecture_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= DaysToShip.data[@item.days_to_ship_id - 1][:name] %></td>
+          <td class="detail-value"><%= @days_to_ships.find_by(id: @item.days_to_ship_id).name %></td>
         </tr>
       </tbody>
     </table>
