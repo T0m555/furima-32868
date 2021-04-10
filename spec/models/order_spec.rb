@@ -71,11 +71,27 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is invalid")
       end
+      it '電話番号が英数混合では登録できないこと' do
+        @order.phone_number = 'aaaaa111111'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
 
       it 'トークンが無いと登録できない' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'UserIDが空では登録できない' do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'ItemIDが空では登録できない' do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

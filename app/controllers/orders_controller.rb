@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
 
   def index
-    @order = Order.new()
+    @order = Order.new
   end
 
   def create
@@ -49,9 +49,13 @@ class OrdersController < ApplicationController
   end
 
   def item_check
-    @payments = Payment.all
+    payments_set
     @payment = @payments.find_by(item_id: params[:item_id])
     redirect_to root_path unless @payment.nil?
+  end
+
+  def payments_set
+    @payments = Payment.all
   end
 
   def shippingCharges_set
