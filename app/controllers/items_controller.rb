@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :ensure_user, only: %i[update edit destroy]
   before_action :set_item, only: %i[show edit update destroy]
   before_action :set_payment
-  before_action :item_check, only: %i[create]
 
   before_action :shippingCharges_set, only: %i[index show new edit]
   before_action :categories_set, only: %i[show new edit]
@@ -65,12 +64,6 @@ class ItemsController < ApplicationController
   def set_payment
     @payments = Payment.all
   end
-
-  def item_check
-    @payment = @item.payment
-    redirect_to root_path unless @payment.nil?
-  end
-
 
   def shippingCharges_set
     @shippingCharges = ShippingCharge.all
