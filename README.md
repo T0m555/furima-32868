@@ -40,7 +40,7 @@ Things you may want to cover:
 | prefecture_id      | integer         | null: false       |
 | days_to_ship_id    | integer         | null: false       |
 | price              | integer         | null: false       |
-| user               | references      | foreign_key: true |
+| user_id            | references      | foreign_key: true |
 
 - belongs_to :user
 - has_one :payment
@@ -48,8 +48,8 @@ Things you may want to cover:
 # payments テーブル
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
-| item          | references | foreign_key: true |
-| user          | references | foreign_key: true |
+| item_id       | references | foreign_key: true |
+| user_id       | references | foreign_key: true |
 
 - belongs_to :user
 - belongs_to :item
@@ -64,7 +64,7 @@ Things you may want to cover:
 | address       | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| payment       | references | null: false, foreign_key: true |
+| payment_id    | references | null: false, foreign_key: true |
 
 
 - belongs_to :payment

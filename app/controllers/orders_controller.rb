@@ -2,24 +2,21 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_user
   before_action :item_check
+  before_action :item_set, only:  [:index, :create]
 
-  before_action :shippingCharges_set, only: :index
-  before_action :prefectures_set, only: :index
+  before_action :shippingCharges_set, only: [:index, :create]
+  before_action :prefectures_set, only: [:index, :create]
+
 
   def index
-    item_set
-    @address = Address.new()
+    @order = Order.new()
   end
 
   def create
-    item_set
-    @payment = Payment.new(payment_params)
-    @address = Address.new(address_params)
-    if @payment.valid? && @address.valid?
+    @order = Order.new(order_params)
+    if @order.valid?
+      @order.save
       pay_item
-      @payment.save
-      @address.save
-
       redirect_to root_path
     else
       render :index
@@ -28,16 +25,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def item_set
-    @item = Item.find(params[:item_id])
-  end
-
-  def address_params
-    params.permit(:post_number, :prefecture_id, :municipality, :address, :phone_number, :building_name).merge(payment_id: @payment[:id])
-  end
-
-  def payment_params
-    params.permit(:item_id).merge(user_id: current_user[:id])
+  def order_params
+    params.require(:order).permit(:post_number, :prefecture_id, :municipality, :address, :phone_number, :building_name).merge(item_id: @item[:id], user_id: current_user[:id], token: params[:token])
   end
 
   def pay_item
@@ -47,6 +36,10 @@ class OrdersController < ApplicationController
         card: params[:token],
         currency: 'jpy'
       )
+  end
+
+  def item_set
+    @item = Item.find(params[:item_id])
   end
 
   def ensure_user
