@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_user
-  before_action :item_check
   before_action :item_set, only:  [:index, :create]
+  before_action :item_check
 
   before_action :shippingCharges_set, only: [:index, :create]
   before_action :prefectures_set, only: [:index, :create]
@@ -49,8 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def item_check
-    payments_set
-    @payment = @payments.find_by(item_id: params[:item_id])
+    @payment = @item.payment
     redirect_to root_path unless @payment.nil?
   end
 

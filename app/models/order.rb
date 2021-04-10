@@ -5,7 +5,7 @@ class Order
   #address
   with_options presence: true do
     validates :municipality, :address,  :item_id, :user_id,  :token
-    validates :phone_number, format: { with: /\A\d{11}\z/ }
+    validates :phone_number, format: { with: /\A\d{,11}\z/ }
     validates :post_number, format: {with: /\A\d{3}[-]\d{4}\z/}
     validates :prefecture_id, numericality: { other_than: 1 }
   end

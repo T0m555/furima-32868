@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
+    id                    {Faker::Number.number(digits: 1)}
     nickname              { Faker::Name.initials(number: 2) }
     last_name             { Gimei.last.kanji }
     first_name            { Gimei.first.kanji }

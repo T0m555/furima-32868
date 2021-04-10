@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
+    @user = FactoryBot.build(:user)
+    @item = FactoryBot.build(:item)
     @order = FactoryBot.build(:order)
+    @order.user_id = @user.id
+    @order.item_id = @item.id
   end
 
   describe 'order登録' do
@@ -12,6 +16,10 @@ RSpec.describe Order, type: :model do
       end
       it 'ビル名が入力されていなくても登録できる' do
         @order.building_name = ''
+        expect(@order).to be_valid
+      end
+      it '電話番号が11桁未満でも登録できる' do
+        @order.phone_number = '1111111111'
         expect(@order).to be_valid
       end
     end
@@ -53,11 +61,6 @@ RSpec.describe Order, type: :model do
       end
       it '電話番号が11桁以上では登録できない' do
         @order.phone_number = '111111111111'
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid")
-      end
-      it '電話番号が11桁未満では登録できない' do
-        @order.phone_number = '1111111111'
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is invalid")
       end

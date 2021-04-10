@@ -9,7 +9,7 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
 
-      <% if @payments.find_by(item_id: @item.id).nil? == false %>
+      <% if @item.payment.nil? == false %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>

@@ -67,8 +67,7 @@ class ItemsController < ApplicationController
   end
 
   def item_check
-    set_payment
-    @payment = @payments.find_by(item_id: params[:item_id])
+    @payment = @item.payment
     redirect_to root_path unless @payment.nil?
   end
 
