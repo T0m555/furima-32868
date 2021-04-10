@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
-    @user = FactoryBot.build(:user)
-    @item = FactoryBot.build(:item)
-    @order = FactoryBot.build(:order)
-    @order.user_id = @user.id
-    @order.item_id = @item.id
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order, user_id: @user.id , item_id: @item.id)
   end
 
   describe 'order登録' do
