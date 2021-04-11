@@ -3,12 +3,15 @@ class ItemsController < ApplicationController
   before_action :ensure_user, only: %i[update edit destroy]
   before_action :set_item, only: %i[show edit update destroy]
   before_action :set_payment
+  
+  before_action :shippingCharges_set, only: %i[index show new edit create update]
+  before_action :categories_set, only: %i[show new edit create update]
+  before_action :conditions_set, only: %i[show new edit create update]
+  before_action :prefectures_set, only: %i[show new edit create update]
+  before_action :days_to_ships_set, only: %i[show new edit create update]
 
-  before_action :shippingCharges_set, only: %i[index show new edit create]
-  before_action :categories_set, only: %i[show new edit create]
-  before_action :conditions_set, only: %i[show new edit create]
-  before_action :prefectures_set, only: %i[show new edit create]
-  before_action :days_to_ships_set, only: %i[show new edit create]
+  before_action :item_check, only: %i[edit]
+
 
   def index
     @items = Item.order(id: :DESC)
@@ -49,6 +52,11 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_charge_id,
                                  :prefecture_id, :days_to_ship_id, :price).merge(user_id: current_user.id)
+  end
+
+  def item_check
+    @payment = @item.payment
+    redirect_to root_path unless @payment.nil?
   end
 
   def ensure_user
