@@ -4,11 +4,11 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
   before_action :set_payment
 
-  before_action :shippingCharges_set, only: %i[index show new edit]
-  before_action :categories_set, only: %i[show new edit]
-  before_action :conditions_set, only: %i[show new edit]
-  before_action :prefectures_set, only: %i[show new edit]
-  before_action :days_to_ships_set, only: %i[show new edit]
+  before_action :shippingCharges_set, only: %i[index show new edit create]
+  before_action :categories_set, only: %i[show new edit create]
+  before_action :conditions_set, only: %i[show new edit create]
+  before_action :prefectures_set, only: %i[show new edit create]
+  before_action :days_to_ships_set, only: %i[show new edit create]
 
   def index
     @items = Item.order(id: :DESC)
