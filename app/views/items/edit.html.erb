@@ -104,13 +104,13 @@ app/assets/stylesheets/items/new.css %>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
           <span>
-            <span id='add-tax-price'><%= (@item.price*0.1).to_i %></span>円
+            <span id='add-tax-price'><%= (@item.price.to_i * 0.1).to_i %></span>円
           </span>
         </div>
         <div class="price-content">
           <span>販売利益</span>
           <span>
-            <span id='profit'><%= (@item.price - @item.price*0.1).to_i %></span>円
+            <span id='profit'><%= (@item.price.to_i - @item.price.to_i * 0.1).to_i %></span>円
           </span>
         </div>
       </div>
